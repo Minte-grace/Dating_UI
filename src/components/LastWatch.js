@@ -1,15 +1,15 @@
 import React from 'react';
 import {View,Text} from 'react-native';
 
-const Home = () => {
+const LastWatch = () => {
     return(
         <View style={{
             flex:1,
             alignItems:'center',
             justifyContent:'center'
         }}>
-            <Text>Home Screen</Text>
+            <Text>LastWatch Component</Text>
         </View>
     )
 }
-export default Home;
+export default LastWatch;

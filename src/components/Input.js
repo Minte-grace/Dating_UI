@@ -1,15 +1,15 @@
 import React from 'react';
 import {View,Text} from 'react-native';
 
-const Home = () => {
+const Input = () => {
     return(
         <View style={{
             flex:1,
             alignItems:'center',
             justifyContent:'center'
         }}>
-            <Text>Home Screen</Text>
+            <Text>Input Component</Text>
         </View>
     )
 }
-export default Home;
+export default Input;

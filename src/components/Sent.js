@@ -1,15 +1,15 @@
 import React from 'react';
 import {View,Text} from 'react-native';
 
-const Home = () => {
+const Sent = () => {
     return(
         <View style={{
             flex:1,
             alignItems:'center',
             justifyContent:'center'
         }}>
-            <Text>Home Screen</Text>
+            <Text>Sent Component</Text>
         </View>
     )
 }
-export default Home;
+export default Sent;
