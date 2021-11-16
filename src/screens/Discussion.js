@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {View,Text,Image,StyleSheet, SafeAreaView} from 'react-native';
+import {View, Text, Image, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -10,7 +10,7 @@ import Sent from '../components/Sent';
 import Data from '../dummy/Data.json';
 import Input from '../components/Input';
 import {SIZES} from "../consts/theme";
-
+const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
 const Discussion = ({ route, navigation }) => {
     const { itemName , itemPic } = route.params;
     const [inputMessage, setMessage] = useState('');
@@ -31,7 +31,7 @@ const Discussion = ({ route, navigation }) => {
     }
 
     return(
-        <KeyboardAwareScrollView style={{flex: 1}}>
+        <KeyboardAvoidingView style={{flex: 1}} behavior='position'>
             <LinearGradient
                 colors={["#f26a50","#f26a50", "#f20045"]} style={{height: SIZES.height}} >
                 <SafeAreaView style={styles.container}>
@@ -80,8 +80,7 @@ const Discussion = ({ route, navigation }) => {
                     />
                 </SafeAreaView>
             </LinearGradient>
-        </KeyboardAwareScrollView>
-
+        </KeyboardAvoidingView>
     )
 }
 export default Discussion;

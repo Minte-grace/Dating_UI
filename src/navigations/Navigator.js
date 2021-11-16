@@ -33,7 +33,7 @@ const BottomTabNavigator = () => {
                     }}
                 />
                  <Tab.Screen
-                    name='Chat'
+                    name='ChatInterface'
                     component={Chat}
                     options={{
                         tabBarLabel:'',

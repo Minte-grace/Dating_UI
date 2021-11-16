@@ -6,6 +6,7 @@ import Icon from '@expo/vector-icons/MaterialIcons';
 import {ScrollView} from 'react-native-gesture-handler';
 import Profiles from '../components/Profiles';
 import Messages from '../components/Messages';
+import {SIZES} from "../consts/theme";
 
 
 const Chat = (props) => {
@@ -47,28 +48,30 @@ const Chat = (props) => {
                     <Text style={styles.header}>Chat</Text>
                     <Icon name='add' color='#fff' size={30}/>
                 </View>
-                <ScrollView
-                    horizontal
-                    style={styles.proContainer}
-                    showsHorizontalScrollIndicator={false}>
-                    {loading ?
-                        (
-                            <ActivityIndicator size='small' color='#FFF'/>
-                        ) : (
-                            <Animated.View style={[pan.getLayout(), styles.card]}>
-                                {
-                                    data.map((item, index) => (
-                                        <Profiles
-                                            key={index}
-                                            username={item.login}
-                                            uri={item.avatar_url}
-                                        />
-                                    ))
-                                }
-                            </Animated.View>
-                        )
-                    }
-                </ScrollView>
+                <View style={styles.proContainer}>
+                    <ScrollView
+                        horizontal
+                        showsHorizontalScrollIndicator={false}>
+                        {loading ?
+                            (
+                                <ActivityIndicator size='small' color='#FFF'/>
+                            ) : (
+                                <Animated.View style={[pan.getLayout(), styles.card]}>
+                                    {
+                                        data.map((item, index) => (
+                                            <Profiles
+                                                key={index}
+                                                username={item.login}
+                                                uri={item.avatar_url}
+                                            />
+                                        ))
+                                    }
+                                </Animated.View>
+                            )
+                        }
+                    </ScrollView>
+                </View>
+
                 <View style={styles.ops}>
                     <View style={styles.col}>
                         <Text style={styles.day}>Sunday</Text>
@@ -132,12 +135,12 @@ const styles = StyleSheet.create({
     },
     proContainer: {
         marginRight: -20,
+        minHeight: 120,
         alignSelf: 'center'
     },
     ops: {
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
-        height: 500,
         backgroundColor: '#FFF',
         marginHorizontal: -20
     },
