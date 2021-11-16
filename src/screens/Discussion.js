@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {View,Text,Image,StyleSheet} from 'react-native';
+import {View,Text,Image,StyleSheet, SafeAreaView} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from '@expo/vector-icons/AntDesign';
@@ -18,70 +18,67 @@ const Discussion = ({ route, navigation }) => {
         setMessage('');
     };
 
-    var txt = []
-    for (var i = 5; i < Data.length; i++){
-        txt.push(<Sent key={Data[i].id} message={Data[i].message}/>);
+    const txt = [];
+    for (let i = 5; i < Data.length; i++){
+        txt.push(<Sent key={i} message={Data[i].message}/>);
     }
-    console.log(Data)
 
     return(
-      <LinearGradient
-        colors={["#f26a50","#f26a50", "#f20045"]}
-        style={styles.container}
-      >
-          <View style={styles.main}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={()=>navigation.goBack()}
-                    >
-                        <Icon name='left' color='#000119' size={24}/>
-                    </TouchableOpacity>
-                    <Text style={styles.username}>{itemName}</Text>
-                    <Image source={{uri:itemPic}} style={styles.avatar}/>
-                </View>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <LastWatch  checkedOn='Yesterday'/>
-                    <Received 
-                        image={itemPic}
-                        message={Data[0].message}
-                    />
-                    <Sent
-                        message={Data[1].message}
-                    />
-                    <Received 
-                        image={itemPic}
-                        message={Data[2].message}
-                    />
-                     <Sent
-                        message={Data[3].message}
-                    />
-                    <LastWatch  checkedOn='Today'/>
-                    <Received 
-                        image={itemPic}
-                        message={Data[4].message}
-                    />
-                    <View>
-                        {txt}
+
+            <LinearGradient
+                colors={["#f26a50","#f26a50", "#f20045"]} style={{flex: 1}} >
+                <SafeAreaView style={styles.container}>
+                <View style={styles.main}>
+                    <View style={styles.headerContainer}>
+                        <TouchableOpacity
+                            onPress={()=>navigation.goBack()}
+                        >
+                            <Icon name='left' color='#000119' size={24}/>
+                        </TouchableOpacity>
+                        <Text style={styles.username}>{itemName}</Text>
+                        <Image source={{uri:itemPic}} style={styles.avatar}/>
                     </View>
-                </ScrollView>
-          </View>
-          <Input
-            inputMessage={inputMessage}
-            setMessage={(inputMessage)=> setMessage(inputMessage)}
-            onSendPress={send}
-          />
-      </LinearGradient>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <LastWatch  checkedOn='Yesterday'/>
+                        <Received
+                            image={itemPic}
+                            message={Data[0].message}
+                        />
+                        <Sent
+                            message={Data[1].message}
+                        />
+                        <Received
+                            image={itemPic}
+                            message={Data[2].message}
+                        />
+                        <Sent
+                            message={Data[3].message}
+                        />
+                        <LastWatch  checkedOn='Today'/>
+                        <Received
+                            image={itemPic}
+                            message={Data[4].message}
+                        />
+                        <View>
+                            {txt}
+                        </View>
+                    </ScrollView>
+                </View>
+                <Input
+                    inputMessage={inputMessage}
+                    setMessage={(inputMessage)=> setMessage(inputMessage)}
+                    onSendPress={send}
+                />
+
+                </SafeAreaView>
+            </LinearGradient>
     )
 }
 export default Discussion;
 
 const styles = StyleSheet.create({
     container:{
-        position:'absolute',
-        left:0,
-        right:0,
-        top:0,
-        height:"100%"
+        flex: 1
     },
     main:{
         backgroundColor:'#FFF',

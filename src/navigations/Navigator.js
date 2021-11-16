@@ -16,9 +16,7 @@ const BottomTabNavigator = () => {
                 activeTintColor:'#f2404c',
                 inactiveTintColor:'#000119',
                 style:{
-                    height:65,
                     justifyContent:'center',
-                    paddingVertical:15,
                     backgroundColor:'#FFF',
                     elevation:2
                 }
