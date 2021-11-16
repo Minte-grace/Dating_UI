@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     input:{
         fontFamily:'Montserrat_600SemiBold',
-        fontSize:11,
+        fontSize:15,
         color:'#fff',
         paddingHorizontal:10,
         flex:1,
