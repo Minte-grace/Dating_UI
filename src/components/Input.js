@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import Entypo from '@expo/vector-icons/Entypo';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {SIZES} from "../consts/theme";
 
 
 const Input = ({ inputMessage, onSendPress, setMessage }) => {
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
         fontSize:11,
         color:'#fff',
         paddingHorizontal:10,
-        flex:1
+        flex:1,
+        height: SIZES.height * 0.04
     }
 })

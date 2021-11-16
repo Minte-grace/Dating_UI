@@ -39,10 +39,8 @@ const Chat = (props) => {
 
     }, [])
 
-    console.log(data.login)
 
     return (
-
         <LinearGradient colors={['#f26a50', '#f20042', '#f20045']} style={styles.gradient}>
             <SafeAreaView style={{flex: 1}}>
                 <View style={styles.headerContainer}>
