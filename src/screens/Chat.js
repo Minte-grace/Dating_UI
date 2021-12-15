@@ -112,7 +112,7 @@ export default Chat;
 
 const styles = StyleSheet.create({
     list: {
-        marginTop: 300,
+        marginTop: 280,
     },
     card: {
         marginLeft: 400,
@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     headerContainer: {
+        marginTop: 20,
         flexDirection: 'row',
         alignItems: 'center'
     },
