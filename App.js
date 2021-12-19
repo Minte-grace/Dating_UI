@@ -5,7 +5,7 @@ import {
   useFonts,
   Montserrat_700Bold,
   Montserrat_600SemiBold,
-//   Montserrat_800ExtraBold
+  Montserrat_800ExtraBold
 } from '@expo-google-fonts/montserrat';
 import { AppLoading } from 'expo'
 
