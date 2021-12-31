@@ -14,7 +14,7 @@ const App = () => {
   let [fontsLoaded] = useFonts({
     Montserrat_700Bold,
     Montserrat_600SemiBold,
-//     Montserrat_800ExtraBold
+    Montserrat_800ExtraBold
   });
   if(!fontsLoaded) {
     return <AppLoading/>
