@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Pro3",
-    "slug": "Pro3",
+    "name": "Dating UI",
+    "slug": "dating-react-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

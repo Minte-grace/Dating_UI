@@ -1,87 +1,94 @@
 import React,{useState} from 'react';
-import {View,Text,Image,StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from '@expo/vector-icons/AntDesign';
 import LastWatch from '../components/LastWatch';
 import Received from '../components/Received';
 import Sent from '../components/Sent';
 import Data from '../dummy/Data.json';
-import Input from '../components/Input'; 
-
+import Input from '../components/Input';
+import {SIZES} from "../consts/theme";
+const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
 const Discussion = ({ route, navigation }) => {
     const { itemName , itemPic } = route.params;
     const [inputMessage, setMessage] = useState('');
+
+    let scrollViewRef = null
     
     const send = () => {
         Data.push({id:inputMessage,message:inputMessage});
         setMessage('');
+        if(scrollViewRef !== null){
+
+        }
     };
 
-    var txt = []
-    for (var i = 5; i < Data.length; i++){
-        txt.push(<Sent key={Data[i].id} message={Data[i].message}/>);
+    const txt = [];
+    for (let i = 5; i < Data.length; i++){
+        txt.push(<Sent key={i} message={Data[i].message}/>);
     }
-    console.log(Data)
 
     return(
-      <LinearGradient
-        colors={["#f26a50","#f26a50", "#f20045"]}
-        style={styles.container}
-      >
-          <View style={styles.main}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={()=>navigation.goBack()}
-                    >
-                        <Icon name='left' color='#000119' size={24}/>
-                    </TouchableOpacity>
-                    <Text style={styles.username}>{itemName}</Text>
-                    <Image source={{uri:itemPic}} style={styles.avatar}/>
-                </View>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <LastWatch  checkedOn='Yesterday'/>
-                    <Received 
-                        image={itemPic}
-                        message={Data[0].message}
-                    />
-                    <Sent
-                        message={Data[1].message}
-                    />
-                    <Received 
-                        image={itemPic}
-                        message={Data[2].message}
-                    />
-                     <Sent
-                        message={Data[3].message}
-                    />
-                    <LastWatch  checkedOn='Today'/>
-                    <Received 
-                        image={itemPic}
-                        message={Data[4].message}
-                    />
-                    <View>
-                        {txt}
+        <KeyboardAvoidingView style={{flex: 1}} behavior='position'>
+            <LinearGradient
+                colors={["#f26a50","#f26a50", "#f20045"]} style={{height: SIZES.height}} >
+                <SafeAreaView style={styles.container}>
+                    <View style={styles.main}>
+                        <View style={styles.headerContainer}>
+                            <TouchableOpacity
+                                onPress={()=>navigation.goBack()}
+                            >
+                                <Icon name='left' color='#000119' size={24}/>
+                            </TouchableOpacity>
+                            <Text style={styles.username}>{itemName}</Text>
+                            <Image source={{uri:itemPic}} style={styles.avatar}/>
+                        </View>
+                        <ScrollView ref={ref => {scrollViewRef = ref}}
+                                    onContentSizeChange={() => scrollViewRef.scrollToEnd({animated: true})}
+                                    showsVerticalScrollIndicator={false}>
+                            <LastWatch  checkedOn='Yesterday'/>
+                            <Received
+                                image={itemPic}
+                                message={Data[0].message}
+                            />
+                            <Sent
+                                message={Data[1].message}
+                            />
+                            <Received
+                                image={itemPic}
+                                message={Data[2].message}
+                            />
+                            <Sent
+                                message={Data[3].message}
+                            />
+                            <LastWatch  checkedOn='Today'/>
+                            <Received
+                                image={itemPic}
+                                message={Data[4].message}
+                            />
+                            <View>
+                                {txt}
+                            </View>
+                        </ScrollView>
                     </View>
-                </ScrollView>
-          </View>
-          <Input
-            inputMessage={inputMessage}
-            setMessage={(inputMessage)=> setMessage(inputMessage)}
-            onSendPress={send}
-          />
-      </LinearGradient>
+                    <Input
+                        inputMessage={inputMessage}
+                        setMessage={(inputMessage)=> setMessage(inputMessage)}
+                        onSendPress={send}
+                    />
+                </SafeAreaView>
+            </LinearGradient>
+        </KeyboardAvoidingView>
     )
 }
 export default Discussion;
 
 const styles = StyleSheet.create({
     container:{
-        position:'absolute',
-        left:0,
-        right:0,
-        top:0,
-        height:"100%"
+        flex: 1,
+        marginBottom: 30
     },
     main:{
         backgroundColor:'#FFF',

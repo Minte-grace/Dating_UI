@@ -7,7 +7,7 @@ import {
   Montserrat_600SemiBold,
   Montserrat_800ExtraBold
 } from '@expo-google-fonts/montserrat';
-import { AppLoading } from 'expo'
+import AppLoading from "expo-app-loading";
 
 
 const App = () => {
